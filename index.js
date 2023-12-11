@@ -21,7 +21,7 @@ const addListeners = () => {
     if (xp >= xpUntilLevel && document.getElementById("LVL-UP") == null) {
     	const lvlUp = document.createElement("button")
       
-      lvlUp.innerHTML = '<img src="./level+.svg" width="50" height="50">'
+      lvlUp.innerHTML = '<img src="./level+.svg" width="100" height="100">'
       lvlUp.setAttribute("id", "LVL-UP")
       
       lvlUp.onclick = function() {
