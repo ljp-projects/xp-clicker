@@ -7,3 +7,8 @@ li {
 :root {
     font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif
 }
+
+button {
+    background: none;
+    border: none;
+}
