@@ -4,6 +4,18 @@ let xp = 0
 let xpUntilLevel = Math.ceil(100 * Math.log(2))
 let xpUntilRebirth = Math.ceil(100000 * Math.log(1000))
 
+const constants = Object.freeze({
+	incremenet: 1.3
+})
+
+const immutables = {
+	rebirths: 0,
+	level: 1,
+	xp: 0,
+	xpUntilLevel: Math.ceil(100 * Math.log(2)),
+	xpUntilRebirth: Math.ceil(100000 * Math.log(1000))
+}
+
 const update = () => {
 	const xpElement = document.querySelector("#xp")
 	const levelElement = document.querySelector("#lvl")
@@ -11,30 +23,30 @@ const update = () => {
 	const xpUntilLevelElement = document.querySelector("#xpulvl")
 	const xpUntilRebirthElement = document.querySelector("#xpurbth")
 
-	xpElement.textContent = xp.toFixed(4)
-	levelElement.textContent = level
-	rebirthsElement.textContent = rebirths
-	xpUntilLevelElement.textContent = xpUntilLevel
-	xpUntilRebirthElement.textContent = xpUntilRebirth
+	xpElement.textContent = immutables.xp.toFixed(2)
+	levelElement.textContent = immutables.level
+	rebirthsElement.textContent = immutables.rebirths
+	xpUntilLevelElement.textContent = immutables.xpUntilLevel
+	xpUntilRebirthElement.textContent = immutables.xpUntilRebirth
 }
 
 const addListeners = () => {
 	const xpUpButton = document.querySelector("#xpup")
 
 	xpUpButton.onclick = function () {
-		xp += level * 1.45 + (rebirths * 10)
+		immutables.xp += immutables.level * constants.incremenet + (immutables.rebirths * 10)
 
-		if (xp >= xpUntilLevel && document.getElementById("LVL-UP") == null) {
+		if (immutables.xp >= immutables.xpUntilLevel && document.getElementById("LVL-UP") == null) {
 			const lvlUp = document.createElement("button")
 
 			lvlUp.innerHTML = '<img src="./level+.svg" width="100" height="100">'
 			lvlUp.setAttribute("id", "LVL-UP")
 
 			lvlUp.onclick = function () {
-				xp -= xpUntilLevel
-				level++
+				immutables.xp -= immutables.xpUntilLevel
+				immutables.level++
 
-				xpUntilLevel = Math.ceil(xpUntilLevel * Math.log(xpUntilLevel / 10))
+				immutables.xpUntilLevel = Math.ceil(immutables.xpUntilLevel * Math.log(immutables.xpUntilLevel / 10))
 
 				update()
 
@@ -42,17 +54,17 @@ const addListeners = () => {
 			}
 
 			document.body.appendChild(lvlUp)
-		} else if (xp >= xpUntilRebirth && document.getElementById("REBIRTH") == null) {
+		} else if (immutables.xp >= immutables.xpUntilRebirth && document.getElementById("REBIRTH") == null) {
 			const rebirthUp = document.createElement("button")
 
-			lvlUp.innerHTML = '<img src="./rebirth.svg" width="100" height="100">'
-			lvlUp.setAttribute("id", "REBIRTH")
+			rebirthUp.innerHTML = '<img src="./rebirth.svg" width="100" height="100">'
+			rebirthUp.setAttribute("id", "REBIRTH")
 
-			lvlup.onclick = function () {
-				xp -= xpUntilRebirth
-				rebirths++
+			rebirthUp.onclick = function () {
+				immutables.xp -= immutables.xpUntilRebirth
+				immutables.rebirths++
 
-				xpUntilRebirth = Math.ceil(xpUntilRebirth * Math.log(xpUntilRebirth / 100))
+				immutables.xpUntilRebirth = Math.ceil(immutables.xpUntilRebirth * Math.log(immutables.xpUntilRebirth / 100))
 
 				update()
 
