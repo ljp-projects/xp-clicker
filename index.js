@@ -1,8 +1,8 @@
 let rebirths = 0
 let level = 1
 let xp = 0
-let xpUntilLevel = Math.ceil(100 * Math.log(100)) - 100
-let xpUntilRebirth = Math.ceil(100000 * Math.log(10000))
+let xpUntilLevel = Math.ceil(100 * Math.log(1))
+let xpUntilRebirth = Math.ceil(100000 * Math.log(1000))
 
 const update = () => {
 	const xpElement = document.querySelector("#xp")
