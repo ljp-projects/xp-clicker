@@ -1,7 +1,7 @@
 let rebirths = 0
 let level = 1
 let xp = 0
-let xpUntilLevel = Math.ceil(100 * Math.log(10)) - 100
+let xpUntilLevel = Math.ceil(100 * Math.log(100)) - 100
 let xpUntilRebirth = Math.ceil(100000 * Math.log(10000))
 
 const update = () => {
@@ -52,7 +52,7 @@ const addListeners = () => {
 				xp -= xpUntilRebirth
 				rebirths++
 
-				xpUntilRebirth = Math.ceil(xpUntilRebirth * Math.log(xpUntilRebirth))
+				xpUntilRebirth = Math.ceil(xpUntilRebirth * Math.log(xpUntilRebirth / 100))
 
 				update()
 
